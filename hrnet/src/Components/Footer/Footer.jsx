@@ -4,7 +4,7 @@ import Logo from '../../assets/image/logo.png';
 const Footer = () => {
     return (        
         <footer>
-            <img className='Logo' src={Logo} alt="logo" /><p>© {new Date().getFullYear()} - HRnet</p>
+            <img className='Logo' src={Logo} alt="Hernet" /><p>© {new Date().getFullYear()} - HRnet</p>
         </footer>
     )
 };  

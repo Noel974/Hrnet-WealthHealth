@@ -3,7 +3,7 @@ import Listtable from "../../Components/Employee/Listtable";
 
 function List(){
     return(
-<Listtable/>
+    <Listtable/>
     )
 }
 

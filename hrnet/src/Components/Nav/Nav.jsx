@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <nav>
             <NavLink to="/">
-                <img className="Logo hernet" src={Logo} alt="logo" />
+                <img className="Logo hernet" src={Logo} alt="Hernet" />
             </NavLink>
         </nav>
     );
