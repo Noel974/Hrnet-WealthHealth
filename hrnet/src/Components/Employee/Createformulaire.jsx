@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import departments from '../../assets/data/Departement.json'; 
 import states from '../../assets/data/Etat.json';
 
@@ -21,8 +22,12 @@ function Createformulaire() {
   };
 
   return (
-    <main className="main-form">
+    <main className="main">
+      <div className='title'>
+      <h1>Hrnet</h1>
+      </div>
       <div className="formulaire">
+      <NavLink  className="lien" to="/list-Employee">View Current Employees</NavLink>
         <h2>Create Employee</h2>
         <form>
           <div className="form-left">

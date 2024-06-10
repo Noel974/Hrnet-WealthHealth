@@ -2,6 +2,7 @@ import React ,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import { useTable } from 'react-table';
 import SearchBar from '../Filtre/Search';
+import Pagination from '../Filtre/Pagination';
 
 function Listtable(){
     const employees = JSON.parse(localStorage.getItem('employees')) || [];
@@ -36,7 +37,7 @@ function Listtable(){
     return(
         <main className="main-table">
             <h2>Current Employees</h2>
-            <SearchBar className="search" pageSize={pageSize} setPageSize={setPageSize} />
+            <SearchBar pageSize={pageSize} setPageSize={setPageSize} />
             <table {...getTableProps()} className="table"> 
                 <thead>
                     {headerGroups.map(headerGroup => (
@@ -60,6 +61,7 @@ function Listtable(){
                     })}
                 </tbody>
             </table>
+            <Pagination canPreviousPage={canPreviousPage} canNextPage={canNextPage} pageCount={pageCount} gotoPage={gotoPage} nextPage={nextPage} previousPage={previousPage} pageIndex={pageIndex} />
             <NavLink to="/">Home</NavLink>
         </main>
     )
