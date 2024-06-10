@@ -25,6 +25,6 @@ Pour installer et exécuter ce projet, suivez les étapes suivantes :
    `git clone https://github.com/[votre-nom-d'utilisateur]/Hrnet-WealthHealth.git`
    ``` 
    Version Html css Jquery du projet le but c'est de refaire le projet sous react 
-   [lien](./Version%20Html%20jquery/README.md)
+   [Version HTML jQuery](./Version%20Html%20jquery/README.md)
 ## Package npm
- Création package npm [lien](./mon-modal/Readme.md)
+ Création package npm [Packagenpm](./mon-modal/README.md)

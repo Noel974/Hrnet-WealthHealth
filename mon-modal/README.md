@@ -13,7 +13,7 @@ Ce projet est un package npm créé avec React.
     ```
     npx create-react-app mon-package
     cd mon-package
-    npm starts
+    npm start
     ```
 
 2. Créez un composant React que vous souhaitez publier en tant que package npm.
