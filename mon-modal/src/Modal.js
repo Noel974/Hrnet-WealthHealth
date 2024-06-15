@@ -1,21 +1,20 @@
 import React from 'react';
 
-class Modal extends React.Component {
-  render() {
-    if(!this.props.show) {
-      return null;
-    }
-    return (
-      <div className='modal'>
-        {this.props.children}
-        <div className='footer'>
-          <button onClick={this.props.onClose}>
-            Fermer
-          </button>
-        </div>
-      </div>
-    );
+const Modal = ({ visible, onClose }) => {
+  if (!visible) {
+    return null;
   }
-}
+
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <span className="modal-close" onClick={onClose}>
+          &times;
+        </span>
+        <h2>Employee Created</h2>
+      </div>
+    </div>
+  );
+};
 
 export default Modal;

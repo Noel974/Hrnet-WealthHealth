@@ -48,7 +48,9 @@ Mettez à jour votre `package.json` pour inclure les informations suivantes :
 ```
 ## Publication
 Connectez-vous à npm en utilisant la commande npm login.
+
 Naviguez vers le répertoire de votre package.
+
 Publiez votre package en utilisant la commande npm publish.
 
 ## Vérification
