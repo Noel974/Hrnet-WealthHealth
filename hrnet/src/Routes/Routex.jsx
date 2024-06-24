@@ -4,11 +4,12 @@ import List from "../Page/Employee/Liste";
 import Create from "../Page/Formulaire/Create";
 
 const Routex = () => {
-    return ( 
+    return (
         <Routes>
-            <Route path="/" element={<Create />} />
+            <Route path ="/" element={<Create/>}/>
             <Route path="/list-Employee" element={<List />} />
+            <Route path="/Create" element={<List />} />
         </Routes>
-    )       
+    )
 }
 export default Routex;

@@ -1,6 +1,10 @@
-import { createStore } from 'redux';
-import employeeReducer from '../Reducer/Reduxer';
+import { createStore, applyMiddleware } from 'redux';
+import Reducer from '../Reducer/Reducer'
+import  storageMiddleware  from '../Middleware/Middleware';
 
-const store = createStore(employeeReducer);
+const store = createStore(
+    Reducer,
+  applyMiddleware(storageMiddleware)
+);
 
 export default store;

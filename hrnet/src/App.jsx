@@ -4,10 +4,8 @@ import Footer from './Components/Footer/Footer';
 import Routex from './Routes/Routex';
 
 import { BrowserRouter } from 'react-router-dom';
-
-import store from './Redux/Store/Store';
-
 import { Provider } from 'react-redux';
+import  store  from './Redux/Store/Store';
 
 import './Style/App.css';
 function App() {
@@ -18,6 +16,7 @@ function App() {
         <Routex />
         <Footer />
       </Provider>
+
     </BrowserRouter>
   );
 }

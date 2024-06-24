@@ -2,12 +2,12 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90px;
-    background-color: #6c8219;
+    height: 70px;
+    background-color: #fff;
     box-shadow: 0 0 10px #ccc;
 }
 
 nav .Logo {
-    width: 20em;
-    height: 5em;
+    width: 100px;
+    height: 59px;
 }

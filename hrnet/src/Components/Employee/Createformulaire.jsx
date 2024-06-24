@@ -6,7 +6,7 @@ import { TextField, MenuItem, Button, Container, Typography, Box, FormControl, I
 import departments from '../../assets/data/Departement.json'; 
 import states from '../../assets/data/Etat.json';
 
-import { ajoutsEmployee } from '../../Redux/Action/Ajout';
+import { ADD_EMPLOYEE } from '../../Redux/Action/Ajout';
 import { useDispatch } from 'react-redux';
 
 function Createformulaire() {
@@ -43,7 +43,7 @@ function Createformulaire() {
       zipCode,
     };
 
-    dispatch(ajoutsEmployee(employee));
+    dispatch(ADD_EMPLOYEE(employee));
     console.log('Employee saved');
   };
 
@@ -209,5 +209,4 @@ function Createformulaire() {
 
   );
 }
-
 export default Createformulaire;

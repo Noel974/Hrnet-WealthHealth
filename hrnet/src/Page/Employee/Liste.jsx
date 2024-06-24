@@ -1,9 +1,9 @@
 import React from "react";
-import Listtable from "../../Components/Employee/Listtable";
+import EmployeeTable from "../../Components/Employee/Listtable";
 
 function List(){
     return(
-    <Listtable/>
+    <EmployeeTable/>
     )
 }
 
