@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
-import Reducer from '../Reducer/Reducer'
-import  storageMiddleware  from '../Middleware/Middleware';
+import {thunk} from 'redux-thunk';
+import EmployeeReducer from '../Reducer/Reducer'
 
 const store = createStore(
-    Reducer,
-  applyMiddleware(storageMiddleware)
+  EmployeeReducer,
+   applyMiddleware(thunk)
 );
 
 export default store;

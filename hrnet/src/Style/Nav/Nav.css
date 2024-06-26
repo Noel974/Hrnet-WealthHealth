@@ -3,11 +3,12 @@ nav {
     justify-content: center;
     align-items: center;
     height: 70px;
-    background-color: #fff;
+    background-color: #5a7008;
     box-shadow: 0 0 10px #ccc;
 }
 
-nav .Logo {
+nav .entete {
+    text-decoration: none;
     width: 100px;
     height: 59px;
 }

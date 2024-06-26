@@ -1,11 +1,11 @@
 import { ADD_EMPLOYEE } from "../Action/Ajout";
-import { LOAD_EMPLOYEES } from "../Action/load";
+import { LOAD_EMPLOYEES } from "../Action/Load";
 
 const initialState = {
     employees: []
   };
   
-  const rootReducer = (state = initialState, action) => {
+  const EmployeeReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_EMPLOYEE:
         return {
@@ -13,6 +13,7 @@ const initialState = {
           employees: [...state.employees, action.employee]
         };
       case LOAD_EMPLOYEES:
+        console.log('Loading employees:', action.employees);
         return {
           ...state,
           employees: action.employees
@@ -21,6 +22,4 @@ const initialState = {
         return state;
     }
   };
-  
-  export default rootReducer;
-  
+  export default EmployeeReducer;

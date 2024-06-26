@@ -3,14 +3,12 @@ footer {
     justify-content: center;
     align-items: center;
     height: 100px; 
-    background-color: #f1f1f1;
+    background-color: #6d8510;
     padding: 20px;
     box-sizing: border-box;
 }
 
-footer .Logo {
-    width: 90px;
-    height: 59px;
+footer .entete {
     margin-right: 10px; 
 }
 

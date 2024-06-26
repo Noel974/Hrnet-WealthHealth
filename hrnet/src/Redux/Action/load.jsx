@@ -1,5 +1,8 @@
 export const LOAD_EMPLOYEES = 'LOAD_EMPLOYEES';
 
 export function loadEmployees() {
-  return { type: LOAD_EMPLOYEES };
+  return (dispatch, getState) => {
+    const employees = getState().employees;
+    dispatch({ type: LOAD_EMPLOYEES, employees });
+  };
 }
