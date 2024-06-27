@@ -9,6 +9,6 @@ nav {
 
 nav .entete {
     text-decoration: none;
-    width: 100px;
-    height: 59px;
+    font-size: 25px;
+    color: #000;
 }

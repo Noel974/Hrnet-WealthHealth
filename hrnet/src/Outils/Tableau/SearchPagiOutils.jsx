@@ -7,7 +7,7 @@ export default function SearchAndPagination({
   search, handleChangeSearch, filteredRows, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage
 }) {
   return (
-    <Grid container spacing={2} alignItems="center">
+    <Grid container spacing={2} alignItems="center" sx={{ marginTop:5 }}>
       <Grid item xs={12} md={6}>
         <TextField
           id="searchInput"
@@ -16,6 +16,7 @@ export default function SearchAndPagination({
           value={search}
           onChange={handleChangeSearch}
           fullWidth
+          sx={{ width: '50%' }}
           aria-label="Search"
         />
       </Grid>

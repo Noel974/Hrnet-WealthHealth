@@ -29,6 +29,12 @@ function CreateFormulaire() {
   };
 
   const saveEmployee = () => {
+    // Validation du formulaire avant de sauvegarder
+    if (!firstName || !lastName || !dateOfBirth || !startDate || !selectedDepartment || !street || !city || !selectedState || !zipCode) {
+      window.alert('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+
     const employee = {
       firstName,
       lastName,
@@ -47,17 +53,17 @@ function CreateFormulaire() {
 
   return (
     <main className='main'>
-      <Container component="main" maxWidth="md">
+      <Container maxWidth="md" >
         <Box sx={{ mt: 4, textAlign: 'center' }}>
           <Typography component="h1" variant="h4" gutterBottom>
             Hrnet
           </Typography>
           <Box mb={2}>
-            <NavLink to="/list-Employee" className="nav-link" aria-label="View Current Employees">
+            <NavLink to="/list-Employee" className="lien" aria-label="View Current Employees">
               View Current Employees
             </NavLink>
           </Box>
-          <Grid container spacing={2}>
+          <Grid style={{ border: '4px solid #5a7008' }}>
             <Grid item xs={12}>
               <Card className="form-card">
                 <CardContent>
@@ -80,8 +86,6 @@ function CreateFormulaire() {
                   </form>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid item xs={12}>
               <Card className="form-card">
                 <CardContent>
                   <Typography variant="h6">Address</Typography>

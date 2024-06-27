@@ -35,7 +35,7 @@ export default function EmployeeTable() {
     setSearch(event.target.value);
   };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -53,14 +53,14 @@ export default function EmployeeTable() {
     <main className='main' role="main">
       <Container>
         <Typography component="h1" variant="h4" gutterBottom sx={{ textAlign: 'center' }}>Current Employees</Typography>
-        <Paper sx={{ width: '90%', overflow: 'hidden' }}>
+        <Paper sx={{ width: '90%', overflow: 'hidden' }} style={{ border: '4px solid #5a7008' }}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table" role="table">
               <TableHeadOutils />
               <TableBodyOutils rows={filteredRows} page={page} rowsPerPage={rowsPerPage} />
             </Table>
           </TableContainer>
-          <SearchAndPagination
+          <SearchAndPagination style={{ bordertop: '4px solid #5a7008'}}sx={{ marginTop:10 }}
             search={search}
             handleChangeSearch={handleChangeSearch}
             filteredRows={filteredRows}
@@ -70,7 +70,7 @@ export default function EmployeeTable() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Paper>
-          <NavLink className="lien" to="/" role="link">Add Employees</NavLink>
+          <NavLink className="lien" to="/" role="link" >Add Employees</NavLink>
       </Container>
     </main>
   );
