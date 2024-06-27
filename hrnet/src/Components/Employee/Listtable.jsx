@@ -1,4 +1,3 @@
-// EmployeeTable.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,12 +50,12 @@ export default function EmployeeTable() {
   );
 
   return (
-    <main className='main'>
+    <main className='main' role="main">
       <Container>
         <Typography component="h1" variant="h4" gutterBottom sx={{ textAlign: 'center' }}>Current Employees</Typography>
         <Paper sx={{ width: '90%', overflow: 'hidden' }}>
           <TableContainer sx={{ maxHeight: 440 }}>
-            <Table stickyHeader aria-label="sticky table">
+            <Table stickyHeader aria-label="sticky table" role="table">
               <TableHeadOutils />
               <TableBodyOutils rows={filteredRows} page={page} rowsPerPage={rowsPerPage} />
             </Table>
@@ -71,7 +70,7 @@ export default function EmployeeTable() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Paper>
-        <NavLink className="lien" to="/">Ajout Employees</NavLink>
+          <NavLink className="lien" to="/" role="link">Add Employees</NavLink>
       </Container>
     </main>
   );

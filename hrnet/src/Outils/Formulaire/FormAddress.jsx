@@ -1,20 +1,19 @@
 import React from 'react';
-
 import { TextField, Grid, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-
 import states from '../../assets/data/Etat.json';
 
 function FormAddress({ street, setStreet, city, setCity, selectedState, handleStateChange, zipCode, setZipCode }) {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} role="form">
       <Grid item xs={12} sm={6}>
-        <TextField 
+        <TextField
           id="street"
           label="Street"
           variant="outlined"
           value={street}
           onChange={e => setStreet(e.target.value)}
           fullWidth
+          aria-label="Street"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -25,6 +24,7 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
           value={city}
           onChange={e => setCity(e.target.value)}
           fullWidth
+          aria-label="City"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -36,8 +36,9 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
             value={selectedState}
             onChange={handleStateChange}
             label="State"
+            aria-label="Select State"
           >
-            <MenuItem value="">
+            <MenuItem value="" disabled aria-disabled="true">
               <em>Select State</em>
             </MenuItem>
             {states.map(state => (
@@ -57,6 +58,7 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
           value={zipCode}
           onChange={e => setZipCode(e.target.value)}
           fullWidth
+          aria-label="Zip Code"
         />
       </Grid>
     </Grid>

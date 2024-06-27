@@ -7,25 +7,29 @@ export default function SearchAndPagination({
   search, handleChangeSearch, filteredRows, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage
 }) {
   return (
-    <Grid container margin={"10px"} justifyContent="space-between" alignItems="center">
-      <Grid item>
+    <Grid container spacing={2} alignItems="center">
+      <Grid item xs={12} md={6}>
         <TextField
-          id="outlined-basic"
+          id="searchInput"
           label="Search"
           variant="outlined"
           value={search}
           onChange={handleChangeSearch}
+          fullWidth
+          aria-label="Search"
         />
       </Grid>
-      <Grid item>
+      <Grid item xs={12} md={6} container justifyContent="flex-end">
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={filteredRows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows per page:"
+          rowsPerPageOptions={[10, 25, 100]}
+          aria-label="Pagination"
         />
       </Grid>
     </Grid>

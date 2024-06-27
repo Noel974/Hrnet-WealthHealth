@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { Container, Typography, Box, Card, CardContent, Grid } from '@mui/material';
 import { ajoutsEmployee } from '../../Redux/Action/Ajout';
 import { useDispatch } from 'react-redux';
-
 import FormEmployee from '../../Outils/Formulaire/FormEmployee';
 import FormAddress from '../../Outils/Formulaire/FormAddress';
 import FormActions from '../../Outils/Formulaire/FormSave';
 
-function Createformulaire() {
+function CreateFormulaire() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -55,12 +53,12 @@ function Createformulaire() {
             Hrnet
           </Typography>
           <Box mb={2}>
-            <NavLink to="/list-Employee" className="nav-link">       
+            <NavLink to="/list-Employee" className="nav-link" aria-label="View Current Employees">
               View Current Employees
             </NavLink>
           </Box>
-          <Grid>
-            <Grid item sm={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
               <Card className="form-card">
                 <CardContent>
                   <Typography component="h2" variant="h5" gutterBottom>
@@ -83,7 +81,7 @@ function Createformulaire() {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <Card className="form-card">
                 <CardContent>
                   <Typography variant="h6">Address</Typography>
@@ -108,4 +106,4 @@ function Createformulaire() {
   );
 }
 
-export default Createformulaire;
+export default CreateFormulaire;

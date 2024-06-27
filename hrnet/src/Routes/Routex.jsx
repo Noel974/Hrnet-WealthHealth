@@ -8,7 +8,7 @@ const Routex = () => {
         <Routes>
             <Route path ="/" element={<Create/>}/>
             <Route path="/list-Employee" element={<List />} />
-            <Route path="/Create" element={<List />} />
+            <Route path="/Create" element={<Create />} />
         </Routes>
     )
 }
