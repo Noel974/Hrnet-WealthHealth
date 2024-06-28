@@ -5,7 +5,8 @@ import { ajoutsEmployee } from '../../Redux/Action/Ajout';
 import { useDispatch } from 'react-redux';
 import FormEmployee from '../../Outils/Formulaire/FormEmployee';
 import FormAddress from '../../Outils/Formulaire/FormAddress';
-import FormActions from '../../Outils/Formulaire/FormSave';
+import FormSave from '../../Outils/Formulaire/FormSave';
+import {Modal} from 'modaleon';
 
 function CreateFormulaire() {
   const [firstName, setFirstName] = useState('');
@@ -18,6 +19,8 @@ function CreateFormulaire() {
   const [selectedState, setSelectedState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleStateChange = (event) => {
@@ -29,6 +32,7 @@ function CreateFormulaire() {
   };
 
   const saveEmployee = () => {
+    console.log('Save employee called'); 
     // Validation du formulaire avant de sauvegarder
     if (!firstName || !lastName || !dateOfBirth || !startDate || !selectedDepartment || !street || !city || !selectedState || !zipCode) {
       window.alert('Veuillez remplir tous les champs obligatoires.');
@@ -48,14 +52,32 @@ function CreateFormulaire() {
     };
 
     dispatch(ajoutsEmployee(employee));
-    console.log('Employee saved');
+    setIsModalOpen(true);
+    console.log('Modal visibility set to true after save.');
+  };
+
+  const resetForm = () => {
+    setFirstName('');
+    setLastName('');
+    setDateOfBirth('');
+    setStartDate('');
+    setSelectedDepartment('');
+    setStreet('');
+    setCity('');
+    setSelectedState('');
+    setZipCode('');
+  };
+
+  const handleCloseModal = () => {
+    resetForm();
+    setIsModalOpen(false);
   };
 
   return (
     <main className='main'>
-      <Container maxWidth="md" >
+      <Container maxWidth="md">
         <Box sx={{ mt: 4, textAlign: 'center' }}>
-          <Typography component="h1" variant="h4" gutterBottom>
+          <Typography sx={{ fontSize: 45 }} component="h1">
             Hrnet
           </Typography>
           <Box mb={2}>
@@ -67,7 +89,7 @@ function CreateFormulaire() {
             <Grid item xs={12}>
               <Card className="form-card">
                 <CardContent>
-                  <Typography component="h2" variant="h5" gutterBottom>
+                  <Typography component="h2" sx={{ fontSize: 25, marginBottom: 5 }}>
                     Create Employee
                   </Typography>
                   <form noValidate autoComplete="off">
@@ -88,7 +110,7 @@ function CreateFormulaire() {
               </Card>
               <Card className="form-card">
                 <CardContent>
-                  <Typography variant="h6">Address</Typography>
+                  <Typography variant="h3" sx={{ fontSize: 20, marginBottom: 5 }}>Address</Typography>
                   <FormAddress
                     street={street}
                     setStreet={setStreet}
@@ -103,9 +125,13 @@ function CreateFormulaire() {
               </Card>
             </Grid>
           </Grid>
-          <FormActions saveEmployee={saveEmployee} />
+          <FormSave saveEmployee={saveEmployee} />
         </Box>
       </Container>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <Typography>Employé sauvegardé avec succès!</Typography>
+        <button onClick={handleCloseModal}>OK</button>
+      </Modal>
     </main>
   );
 }

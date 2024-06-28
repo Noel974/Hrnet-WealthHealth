@@ -7,9 +7,13 @@
     padding-bottom: 50px;
     background-color: #93ad18;
   }
+  .titre{
+    font-size: 45px;
+    margin: 15px;
+  }
   .lien {
     display: block;
-    font-size: 15px;
+    font-size: 20px;
     width: fit-content;
     margin: 20px auto 0; 
     text-align: center; 
