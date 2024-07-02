@@ -7,7 +7,7 @@ Ce projet est un package npm créé avec React.
 - [Configuration du package.json](#configuration-du-packagejson)
 - [TsConfig](#tsconfig)
 - [Babel](#babel)
-- [Exemple d'utilisation](#exemple-dutilisation)
+- [Compile](#Compilation)
 - [Test](#test)
 - [Publication](#publication)
 - [Vérification](#vérification)
@@ -20,6 +20,19 @@ Un compte npm pour publier le package.
 ## Installation
 Créer un dossier puis a l'aide du terminal entrer la commande suivante pour l'installation du projet `npm init` et suivre les etapes de l'installation.
 
+## Installation devDependencies
+Pourquoi utiliser devDependencies ?
+1. Séparation des préoccupations : En séparant les dépendances nécessaires au développement de celles nécessaires à l'exécution, vous gardez votre environnement de production propre et léger.
+2. Installation optimisée : Les utilisateurs de votre package n'ont pas besoin de télécharger et d'installer les outils de développement lorsqu'ils installent votre package.
+3. Sécurité : Moins de dépendances installées en production signifie moins de vecteurs d'attaque potentiels.
+
+Ce sont des outils et des bibliothèques dont on a  besoin pour développer, tester et construire notre projet.
+
+Pour installer une dépendance en tant que devDependency, utilisez l'option --save-dev (ou -D) avec la commande npm install ou yarn add. Par exemple :
+
+`npm install --save-dev typescript`
+# ou avec Yarn
+`yarn add --dev typescript`
 
 ## Configuration du package.json
 Mettez à jour votre package.json pour inclure les informations suivantes :
@@ -52,6 +65,7 @@ Mettez à jour votre package.json pour inclure les informations suivantes :
 }
 ```
 ## TsConfig
+Le fichier tsconfig.json est utilisé pour configurer le compilateur TypeScript (tsc). Il définit les options de compilation pour votre projet.
 ```json
 {
     "compilerOptions": {
@@ -92,7 +106,9 @@ Babel est un transpileur qui convertit le code JavaScript moderne (par exemple, 
 }
 
 ```
-
+## Compile
+`npx rimraf dist && tsc --declarationDir dist --emitDeclarationOnly && npx babel ./lib --out-dir dist --extensions \".ts,.tsx\" --copy-files --presets=@babel/preset-env,@babel/preset-react,@babel/preset-typescript` 
+nettoie, compile et transpile votre code TypeScript en JavaScript prêt à être utilisé
 ## Test
 Creer un projet test pour tester la library npm avant de publier pour voir son fonctionnement.
 Pour réaliser le test il faudra suivre c'est étapes dans le terminal de la library vers npm link puis se rendre dans le projet test 
