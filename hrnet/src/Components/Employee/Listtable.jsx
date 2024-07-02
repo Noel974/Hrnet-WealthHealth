@@ -1,26 +1,30 @@
-import React from 'react';
+// EmployeeTable.js
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadEmployees } from '../../Redux/Action/Load';
-import { Container, Typography, Table, TableContainer, Paper, Box, TableHead, TableRow, TableCell, TableSortLabel } from '@mui/material';
+import { Container, Typography, Table, TableContainer, Paper, Box } from '@mui/material';
 import TableBodyOutils from '../../Outils/Tableau/TableBodyOutils';
 import SearchAndPagination from '../../Outils/Tableau/SearchPagiOutils';
+import TableHeadOutil from '../../Outils/Tableau/TableHeadOutils';
 
 export default function EmployeeTable() {
   const dispatch = useDispatch();
   const employees = useSelector((state) => state.employees);
 
-  const [search, setSearch] = React.useState('');
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('firstName');
+  // State management
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('firstName');
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(loadEmployees());
   }, [dispatch]);
 
-  const rows = employees ? employees.map(emp => ({
+  // Formatting employee data
+  const rows = employees?.map(emp => ({
     firstName: emp.firstName,
     lastName: emp.lastName,
     startDate: emp.startDate,
@@ -30,41 +34,31 @@ export default function EmployeeTable() {
     city: emp.city,
     state: emp.state,
     zipCode: emp.zipCode,
-  })) : [];
+  })) || [];
 
-  const handleChangeSearch = (event) => {
-    setSearch(event.target.value);
-  };
-
-  const handleChangePage = (newPage) => {
-    setPage(newPage);
-  };
-
+  // Handlers for search, pagination, sorting
+  const handleChangeSearch = (event) => setSearch(event.target.value);
+  const handleChangePage = (newPage) => setPage(newPage);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
+  // Filtering and sorting rows
   const filteredRows = rows.filter(row =>
     row.firstName.toLowerCase().includes(search.toLowerCase()) ||
     row.lastName.toLowerCase().includes(search.toLowerCase())
   );
-
   const sortedRows = filteredRows.sort((a, b) => {
-    if (orderBy === 'firstName' || orderBy === 'lastName' || orderBy === 'department' || orderBy === 'city' || orderBy === 'state') {
-      return order === 'asc'
-        ? a[orderBy].localeCompare(b[orderBy])
-        : b[orderBy].localeCompare(a[orderBy]);
+    if (['firstName', 'lastName', 'department', 'city', 'state'].includes(orderBy)) {
+      return order === 'asc' ? a[orderBy].localeCompare(b[orderBy]) : b[orderBy].localeCompare(a[orderBy]);
     } else {
-      return order === 'asc'
-        ? new Date(a[orderBy]) - new Date(b[orderBy])
-        : new Date(b[orderBy]) - new Date(a[orderBy]);
+      return order === 'asc' ? new Date(a[orderBy]) - new Date(b[orderBy]) : new Date(b[orderBy]) - new Date(a[orderBy]);
     }
   });
 
@@ -77,91 +71,11 @@ export default function EmployeeTable() {
         <Paper sx={{ width: '120%', overflow: 'hidden', border: '4px solid #5a7008' }}>
           <TableContainer>
             <Table stickyHeader aria-label="sticky table" role="table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'firstName'}
-                      direction={orderBy === 'firstName' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'firstName')}
-                    >
-                      First Name
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'lastName'}
-                      direction={orderBy === 'lastName' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'lastName')}
-                    >
-                      Last Name
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'startDate'}
-                      direction={orderBy === 'startDate' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'startDate')}
-                    >
-                      Start Date
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'department'}
-                      direction={orderBy === 'department' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'department')}
-                    >
-                      Department
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'dateOfBirth'}
-                      direction={orderBy === 'dateOfBirth' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'dateOfBirth')}
-                    >
-                      Date of Birth
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'city'}
-                      direction={orderBy === 'city' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'city')}
-                    >
-                      City
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'Street'}
-                      direction={orderBy === 'Street' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'Street')}
-                    >
-                      Street
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'state'}
-                      direction={orderBy === 'state' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'state')}
-                    >
-                      State
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel
-                      active={orderBy === 'zipCode'}
-                      direction={orderBy === 'zipCode' ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, 'zipCode')}
-                    >
-                      Zip Code
-                    </TableSortLabel>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
+              <TableHeadOutil
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+              />
               <TableBodyOutils rows={sortedRows} page={page} rowsPerPage={rowsPerPage} />
             </Table>
           </TableContainer>

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Container, Typography, Box, Card, CardContent, Grid } from '@mui/material';
+import { Container, Typography, Box, Card, CardContent, Grid, Button } from '@mui/material';
 import { ajoutsEmployee } from '../../Redux/Action/Ajout';
 import { useDispatch } from 'react-redux';
 import FormEmployee from '../../Outils/Formulaire/FormEmployee';
 import FormAddress from '../../Outils/Formulaire/FormAddress';
 import FormSave from '../../Outils/Formulaire/FormSave';
-import {Modal} from 'modaleon';
+import { Modal } from 'modaleon';
 
 function CreateFormulaire() {
+  // State management for form fields
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -19,23 +20,34 @@ function CreateFormulaire() {
   const [selectedState, setSelectedState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
+  // State management for modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
+  // Handlers for dropdown changes
+  const handleStateChange = (event) => setSelectedState(event.target.value);
+  const handleDepartmentChange = (event) => setSelectedDepartment(event.target.value);
+
+  // Date validation function
+  const isDateValid = () => {
+    if (new Date(dateOfBirth) >= new Date(startDate)) {
+      window.alert('La date de naissance doit être antérieure à la date de début.');
+      return false;
+    }
+    return true;
   };
 
-  const handleDepartmentChange = (event) => {
-    setSelectedDepartment(event.target.value);
-  };
-
+  // Save employee handler
   const saveEmployee = () => {
-    console.log('Save employee called'); 
-    // Validation du formulaire avant de sauvegarder
+    // Form validation
     if (!firstName || !lastName || !dateOfBirth || !startDate || !selectedDepartment || !street || !city || !selectedState || !zipCode) {
       window.alert('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+
+    // Date validation
+    if (!isDateValid()) {
       return;
     }
 
@@ -53,9 +65,9 @@ function CreateFormulaire() {
 
     dispatch(ajoutsEmployee(employee));
     setIsModalOpen(true);
-    console.log('Modal visibility set to true after save.');
   };
 
+  // Reset form fields
   const resetForm = () => {
     setFirstName('');
     setLastName('');
@@ -68,6 +80,7 @@ function CreateFormulaire() {
     setZipCode('');
   };
 
+  // Close modal and reset form
   const handleCloseModal = () => {
     resetForm();
     setIsModalOpen(false);
@@ -130,7 +143,7 @@ function CreateFormulaire() {
       </Container>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <Typography>Employé sauvegardé avec succès!</Typography>
-        <button onClick={handleCloseModal}>OK</button>
+        <Button onClick={handleCloseModal}>OK</Button>
       </Modal>
     </main>
   );
