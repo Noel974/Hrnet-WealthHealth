@@ -7,7 +7,7 @@ Ce projet est un package npm créé avec React.
 - [Configuration du package.json](#configuration-du-packagejson)
 - [TsConfig](#tsconfig)
 - [Babel](#babel)
-- [Compile](#Compilation)
+- [Compile](#Compile)
 - [Test](#test)
 - [Publication](#publication)
 - [Vérification](#vérification)

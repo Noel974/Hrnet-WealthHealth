@@ -19,6 +19,8 @@ var Modal = function Modal(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("button", {
     className: "modal-close",
     onClick: onClose
-  }, "\xD7"), children));
+  }, "\xD7"), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "body"
+  }, children)));
 };
 var _default = exports["default"] = Modal;
