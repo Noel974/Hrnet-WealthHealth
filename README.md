@@ -21,4 +21,3 @@ La réalisation du projet est coupé en deux étapes un pour la partie package n
 1. Npm retrouver tous les informations concernat le package npm dans le dossier [Modaleon](./Modaleon/README.md)
 2. Le code en react retrouver tous les informations concernant le code en react dans le dossier [hrnet](./hrnet/README.md)
 
-
