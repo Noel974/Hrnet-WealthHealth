@@ -143,7 +143,7 @@ function CreateFormulaire() {
       </Container>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <Typography>Employé sauvegardé avec succès!</Typography>
-        <Button onClick={handleCloseModal}>OK</Button>
+        <Button variant="contained" color="success" onClick={handleCloseModal}>OK</Button>
       </Modal>
     </main>
   );

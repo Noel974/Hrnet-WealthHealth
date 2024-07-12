@@ -16,7 +16,6 @@ function App() {
         <Routex />
         <Footer />
       </Provider>
-
     </BrowserRouter>
   );
 }
