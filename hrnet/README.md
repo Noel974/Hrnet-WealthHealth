@@ -36,9 +36,17 @@ La strucure de react dans le dossier SRC on reetrouvera des éléments tels que:
 - Styles: Le Style du site elle contient des éléments sur l'asspect du site 
 
 ### Recommandation
-- [installation](#Installation)
+- [Installation](#Installation)
 - [Build](#Build)
 
 ## Installation
+- Clonage du dépôt :
+`git clone https://github.com/votre-utilisateur/votre-projet.git`
+`cd votre-projet`
+- Installation des dépendances :
+`npm install`
+- Lancement de l’application :
+`npm start`
 
 ## Build
+Faire un Npm build pour tous compilé avant de faire un npm build verifier que `@babel/plugin-proposal-private-property-in-object` est correctement installer puis de faire npm build . Elle permet de regrouper correctement React en mode production et optimise la construction pour obtenir les meilleures performance
