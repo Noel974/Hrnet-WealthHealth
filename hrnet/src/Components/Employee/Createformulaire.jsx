@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Container, Typography, Box, Card, CardContent, Grid, Button } from '@mui/material';
-import { ajoutsEmployee } from '../../Redux/Action/Ajout';
-import { useDispatch } from 'react-redux';
-import FormEmployee from '../../Outils/Formulaire/FormEmployee';
-import FormAddress from '../../Outils/Formulaire/FormAddress';
-import FormSave from '../../Outils/Formulaire/FormSave';
+import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
 import { Modal } from 'modaleon';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import FormAddress from '../../Outils/Formulaire/FormAddress';
+import FormEmployee from '../../Outils/Formulaire/FormEmployee';
+import FormSave from '../../Outils/Formulaire/FormSave';
+import { ajoutsEmployee } from '../../Redux/Action/Ajout';
 
 function CreateFormulaire() {
-  // State management for form fields
+  // Gestion des états pour les champs de formulaire
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -20,16 +20,19 @@ function CreateFormulaire() {
   const [selectedState, setSelectedState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
-  // State management for modal visibility
+  // Gestion de l'état pour la visibilité de la modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Initialisation du dispatcher pour envoyer des actions Redux
   const dispatch = useDispatch();
 
-  // Handlers for dropdown changes
+  // Gestionnaire de changement pour la liste déroulante d'état
   const handleStateChange = (event) => setSelectedState(event.target.value);
+
+  // Gestionnaire de changement pour la liste déroulante de département
   const handleDepartmentChange = (event) => setSelectedDepartment(event.target.value);
 
-  // Date validation function
+  // Fonction de validation de la date
   const isDateValid = () => {
     if (new Date(dateOfBirth) >= new Date(startDate)) {
       window.alert('La date de naissance doit être antérieure à la date de début.');
@@ -38,19 +41,20 @@ function CreateFormulaire() {
     return true;
   };
 
-  // Save employee handler
+  // Gestionnaire pour sauvegarder l'employé
   const saveEmployee = () => {
-    // Form validation
+    // Validation du formulaire
     if (!firstName || !lastName || !dateOfBirth || !startDate || !selectedDepartment || !street || !city || !selectedState || !zipCode) {
       window.alert('Veuillez remplir tous les champs obligatoires.');
       return;
     }
 
-    // Date validation
+    // Validation de la date
     if (!isDateValid()) {
       return;
     }
 
+    // Création de l'objet employé
     const employee = {
       firstName,
       lastName,
@@ -63,11 +67,13 @@ function CreateFormulaire() {
       zipCode,
     };
 
+    // Envoi de l'action Redux pour ajouter l'employé
     dispatch(ajoutsEmployee(employee));
+    // Affichage de la modal de confirmation
     setIsModalOpen(true);
   };
 
-  // Reset form fields
+  // Réinitialiser les champs du formulaire
   const resetForm = () => {
     setFirstName('');
     setLastName('');
@@ -80,7 +86,7 @@ function CreateFormulaire() {
     setZipCode('');
   };
 
-  // Close modal and reset form
+  // Fermer la modal et réinitialiser le formulaire
   const handleCloseModal = () => {
     resetForm();
     setIsModalOpen(false);
@@ -142,8 +148,12 @@ function CreateFormulaire() {
         </Box>
       </Container>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <Typography>Employé sauvegardé avec succès!</Typography>
-        <Button variant="contained" color="success" onClick={handleCloseModal}>OK</Button>
+        <Card>
+          <Typography>Employé sauvegardé avec succès!</Typography>
+        </Card>
+        <Box sx={{justifyContent: 'center' , display:'flex' , margin:'10px'}}>
+          <Button variant="contained" color="success" onClick={handleCloseModal}>OK</Button>
+        </Box>
       </Modal>
     </main>
   );
