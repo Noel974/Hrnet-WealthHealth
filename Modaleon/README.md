@@ -112,7 +112,7 @@ nettoie, compile et transpile votre code TypeScript en JavaScript prêt à être
 ## Test
 Creer un projet test pour tester la library npm avant de publier pour voir son fonctionnement.
 Pour réaliser le test il faudra suivre c'est étapes dans le terminal de la library vers npm link puis se rendre dans le projet test 
-et dans le terminal du projet faire `npm link`suivi du nom exemple `npm link monnpm` 
+et dans le terminal du projet faire `npm link`suivi du nom exemple `npm link mon-npm` 
 une vois terminé se rendre dans le dossier node_modules du projets test et de cherche le package pour voir si il se trouve par la suite de faire l'import dans un fichier pour l'exuter le projet test avec `npm start` et voir le fonctionnement du package.
 
 ## Publication
@@ -123,4 +123,4 @@ Naviguez vers le répertoire de votre package.
 Publiez votre package en utilisant la commande npm publish.
 
 ## Vérification
-Vérifiez que votre package a été publié en allant sur sa page sur le site web de npm. L’URL sera https://www.npmjs.com/package/mon-package.
+Vérifiez que votre package a été publié en allant sur sa page sur le site web de npm. L’URL sera https://www.npmjs.com/package/modaleon.

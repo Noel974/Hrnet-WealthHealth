@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextField, Grid, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import departments from '../../assets/data/Departement.json';
 
 function FormEmployee({
@@ -14,6 +14,26 @@ function FormEmployee({
   selectedDepartment,
   handleDepartmentChange
 }) {
+  const [dateInputValue, setDateInputValue] = useState('');
+
+  useEffect(() => {
+    if (!dateOfBirth) {
+      setDateInputValue('');
+    }
+  }, [dateOfBirth]);
+
+  const handleDateFocus = (e) => {
+    if (!dateOfBirth) {
+      e.target.value = '1980-01-01';
+      setDateInputValue('1980-01-01');
+    }
+  };
+
+  const handleDateChange = (e) => {
+    setDateOfBirth(e.target.value);
+    setDateInputValue(e.target.value);
+  };
+
   return (
     <Grid container spacing={2} role="form">
       <Grid item xs={12} sm={6}>
@@ -44,8 +64,9 @@ function FormEmployee({
           label="Date of Birth"
           type="date"
           variant="outlined"
-          value={dateOfBirth}
-          onChange={e => setDateOfBirth(e.target.value)}
+          value={dateInputValue}
+          onFocus={handleDateFocus}
+          onChange={handleDateChange}
           InputLabelProps={{ shrink: true }}
           fullWidth
           aria-label="Date of Birth"

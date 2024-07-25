@@ -49,4 +49,5 @@ La strucure de react dans le dossier SRC on reetrouvera des éléments tels que:
 `npm start`
 
 ## Build
-Faire un Npm build pour tous compilé avant de faire un npm build verifier que `@babel/plugin-proposal-private-property-in-object` est correctement installer puis de faire npm build . Elle permet de regrouper correctement React en mode production et optimise la construction pour obtenir les meilleures performance
+Faire un Npm build pour tous compilé avant de faire un npm build verifier que `@babel/plugin-proposal-private-property-in-object` est correctement installer puis de faire npm build . Elle permet de regrouper correctement React en mode production et optimise la construction pour obtenir les meilleures performance.
+Une fois le build terminé lancer le serveur build en fesant `serve -s build`
