@@ -1,12 +1,12 @@
+import * as material from '@mui/material';
 import React from 'react';
-import { TextField, Grid, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import states from '../../assets/data/Etat.json';
 
 function FormAddress({ street, setStreet, city, setCity, selectedState, handleStateChange, zipCode, setZipCode }) {
   return (
-    <Grid container spacing={2} role="form">
-      <Grid item xs={12} sm={6}>
-        <TextField
+    <material.Grid container spacing={2} role="form">
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="street"
           label="Street"
           variant="outlined"
@@ -15,9 +15,9 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
           fullWidth
           aria-label="Street"
         />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="city"
           label="City"
           variant="outlined"
@@ -26,11 +26,11 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
           fullWidth
           aria-label="City"
         />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <FormControl variant="outlined" fullWidth>
-          <InputLabel id="state-label">State</InputLabel>
-          <Select
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.FormControl variant="outlined" fullWidth>
+          <material.InputLabel id="state-label">State</material.InputLabel>
+          <material.Select
             labelId="state-label"
             id="state"
             value={selectedState}
@@ -38,19 +38,19 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
             label="State"
             aria-label="Select State"
           >
-            <MenuItem value="" disabled aria-disabled="true">
+            <material.MenuItem value="" disabled aria-disabled="true">
               <em>Select State</em>
-            </MenuItem>
+            </material.MenuItem>
             {states.map(state => (
-              <MenuItem key={state.abbreviation} value={state.abbreviation}>
+              <material.MenuItem key={state.abbreviation} value={state.abbreviation}>
                 {state.name}
-              </MenuItem>
+              </material.MenuItem>
             ))}
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
+          </material.Select>
+        </material.FormControl>
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="zip-code"
           label="Zip Code"
           type="number"
@@ -60,8 +60,8 @@ function FormAddress({ street, setStreet, city, setCity, selectedState, handleSt
           fullWidth
           aria-label="Zip Code"
         />
-      </Grid>
-    </Grid>
+      </material.Grid>
+    </material.Grid>
   );
 }
 

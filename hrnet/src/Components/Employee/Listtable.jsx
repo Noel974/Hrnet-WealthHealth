@@ -103,7 +103,7 @@ export default function EmployeeTable() {
         </Paper>
         <Box sx={{ mt: 2 }}>
           {/* Lien de navigation pour ajouter des employés */}
-          <NavLink className="lien" to="/" role="link">
+          <NavLink className="lien" to="/create" role="link">
             Add Employees
           </NavLink>
         </Box>

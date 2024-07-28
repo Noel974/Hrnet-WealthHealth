@@ -16,26 +16,61 @@ function FormEmployee({
 }) {
   const [dateInputValue, setDateInputValue] = useState("");
 
+  // Met à jour la valeur d'entrée lorsque la date de naissance change
   useEffect(() => {
     if (!dateOfBirth) {
       setDateInputValue("");
+    } else {
+      setDateInputValue(dateOfBirth); // Assurez-vous que l'état initial correspond à la date de naissance fournie
     }
   }, [dateOfBirth]);
 
+  /**
+   * Gère le focus sur le champ de date de naissance.
+   * Définit une date par défaut si aucune date de naissance n'est fournie.
+   *
+   * @param {object} e - L'événement de focus.
+   */
   const handleDateFocus = (e) => {
     if (!dateOfBirth) {
-      e.target.value = "1980-01-01";
+      e.target.value = ""; // Date par défaut
       setDateInputValue("1980-01-01");
     }
   };
 
+  /**
+   * Met à jour l'état de la date de naissance lorsque la valeur change.
+   *
+   * @param {object} e - L'événement de changement.
+   */
   const handleDateChange = (e) => {
     setDateOfBirth(e.target.value);
     setDateInputValue(e.target.value);
   };
 
+  // Propriétés personnalisées pour gérer la saisie du clavier pour la date de naissance
+  const dateInputProps = {
+    onKeyDown: (e) => {
+      if (e.key === "Enter") {
+        // Met à jour la date de naissance avec la valeur actuelle lorsque "Entrée" est pressée
+        setDateOfBirth(dateInputValue);
+      }
+    },
+  };
+
+  // Propriétés personnalisées pour gérer la saisie du clavier pour la date de début
+  const startDateInputProps = {
+    onKeyDown: (e) => {
+      if (e.key === "Enter") {
+        // Met à jour la date de début avec la valeur actuelle lorsque "Entrée" est pressée
+        setStartDate(startDate);
+      }
+    },
+  };
+
   return (
     <material.Grid container spacing={2} role="form">
+      {/* Champ pour le prénom de l'employé */}
       <material.Grid item xs={12} sm={6}>
         <material.TextField
           id="first-name"
@@ -47,6 +82,8 @@ function FormEmployee({
           aria-label="First Name"
         />
       </material.Grid>
+
+      {/* Champ pour le nom de famille de l'employé */}
       <material.Grid item xs={12} sm={6}>
         <material.TextField
           id="last-name"
@@ -58,6 +95,8 @@ function FormEmployee({
           aria-label="Last Name"
         />
       </material.Grid>
+
+      {/* Champ pour la date de naissance de l'employé */}
       <material.Grid item xs={12} sm={6}>
         <material.TextField
           id="date-of-birth"
@@ -67,20 +106,14 @@ function FormEmployee({
           value={dateInputValue}
           onFocus={handleDateFocus}
           onChange={handleDateChange}
-          InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true }} // L'étiquette se rétracte toujours
           fullWidth
-          inputProps={{
-            onKeyDown: (e) => {
-              // Gérez la saisie au clavier ici (par exemple, validez avec la touche "Entrée")
-              if (e.key === "Enter") {
-                // Mettez à jour la date de naissance avec la valeur actuelle
-                setDateOfBirth(dateInputValue);
-              }
-            },
-          }}
+          inputProps={dateInputProps} // Utilisation des propriétés personnalisées
           aria-label="Date of Birth"
         />
       </material.Grid>
+
+      {/* Champ pour la date de début d'emploi de l'employé */}
       <material.Grid item xs={12} sm={6}>
         <material.TextField
           id="start-date"
@@ -91,18 +124,12 @@ function FormEmployee({
           onChange={(e) => setStartDate(e.target.value)}
           InputLabelProps={{ shrink: true }}
           fullWidth
-          inputProps={{
-            onKeyDown: (e) => {
-              // Gérez la saisie au clavier ici (par exemple, validez avec la touche "Entrée")
-              if (e.key === "Enter") {
-                // Mettez à jour la date de naissance avec la valeur actuelle
-                setDateOfBirth(dateInputValue);
-              }
-            },
-          }}
-          aria-label="Date de naissance"
+          inputProps={startDateInputProps} // Utilisation des propriétés personnalisées
+          aria-label="Start Date"
         />
       </material.Grid>
+
+      {/* Sélecteur pour le département de l'employé */}
       <material.Grid item xs={12}>
         <material.FormControl variant="outlined" fullWidth>
           <material.InputLabel id="department-label">Department</material.InputLabel>
