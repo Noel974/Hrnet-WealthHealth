@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import * as material from '@mui/material';
 import { Modal } from 'modaleon';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -94,23 +94,23 @@ function CreateFormulaire() {
 
   return (
     <main className='main'>
-      <Container maxWidth="md">
-        <Box sx={{ mt: 4, textAlign: 'center' }}>
-          <Typography sx={{ fontSize: 45 }} component="h1">
+      <material.Container maxWidth="md">
+        <material.Box sx={{ mt: 4, textAlign: 'center' }}>
+          <material.Typography sx={{ fontSize: 45 }} component="h1">
             Hrnet
-          </Typography>
-          <Box mb={2}>
+          </material.Typography>
+          <material.Box mb={2}>
             <NavLink to="/list-Employee" className="lien" aria-label="View Current Employees">
               View Current Employees
             </NavLink>
-          </Box>
-          <Grid style={{ border: '4px solid #5a7008' }}>
-            <Grid item xs={12}>
-              <Card className="form-card">
-                <CardContent>
-                  <Typography component="h2" sx={{ fontSize: 25, marginBottom: 5 }}>
+          </material.Box>
+          <material.Grid style={{ border: '4px solid #5a7008' }}>
+            <material.Grid item xs={12}>
+              <material.Card className="form-card">
+                <material.CardContent>
+                  <material.Typography component="h2" sx={{ fontSize: 25, marginBottom: 5 }}>
                     Create Employee
-                  </Typography>
+                  </material.Typography>
                   <form noValidate autoComplete="off">
                     <FormEmployee
                       firstName={firstName}
@@ -125,11 +125,11 @@ function CreateFormulaire() {
                       handleDepartmentChange={handleDepartmentChange}
                     />
                   </form>
-                </CardContent>
-              </Card>
-              <Card className="form-card">
-                <CardContent>
-                  <Typography variant="h3" sx={{ fontSize: 20, marginBottom: 5 }}>Address</Typography>
+                </material.CardContent>
+              </material.Card>
+              <material.Card className="form-card">
+                <material.CardContent>
+                  <material.Typography variant="h3" sx={{ fontSize: 20, marginBottom: 5 }}>Address</material.Typography>
                   <FormAddress
                     street={street}
                     setStreet={setStreet}
@@ -140,20 +140,20 @@ function CreateFormulaire() {
                     zipCode={zipCode}
                     setZipCode={setZipCode}
                   />
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+                </material.CardContent>
+              </material.Card>
+            </material.Grid>
+          </material.Grid>
           <FormSave saveEmployee={saveEmployee} />
-        </Box>
-      </Container>
+        </material.Box>
+      </material.Container>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <Card>
-          <Typography>Employé sauvegardé avec succès!</Typography>
-        </Card>
-        <Box sx={{justifyContent: 'center' , display:'flex' , margin:'10px'}}>
-          <Button variant="contained" color="success" onClick={handleCloseModal}>OK</Button>
-        </Box>
+        <material.Card>
+          <material.Typography>Employé sauvegardé avec succès!</material.Typography>
+        </material.Card>
+        <material.Box sx={{justifyContent: 'center' , display:'flex' , margin:'10px'}}>
+          <material.Button variant="contained" color="success" onClick={handleCloseModal}>OK</material.Button>
+        </material.Box>
       </Modal>
     </main>
   );

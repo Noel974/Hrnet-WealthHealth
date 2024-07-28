@@ -1,6 +1,6 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import departments from '../../assets/data/Departement.json';
+import * as material from "@mui/material";
+import React, { useEffect, useState } from "react";
+import departments from "../../assets/data/Departement.json";
 
 function FormEmployee({
   firstName,
@@ -12,20 +12,20 @@ function FormEmployee({
   startDate,
   setStartDate,
   selectedDepartment,
-  handleDepartmentChange
+  handleDepartmentChange,
 }) {
-  const [dateInputValue, setDateInputValue] = useState('');
+  const [dateInputValue, setDateInputValue] = useState("");
 
   useEffect(() => {
     if (!dateOfBirth) {
-      setDateInputValue('');
+      setDateInputValue("");
     }
   }, [dateOfBirth]);
 
   const handleDateFocus = (e) => {
     if (!dateOfBirth) {
-      e.target.value = '1980-01-01';
-      setDateInputValue('1980-01-01');
+      e.target.value = "1980-01-01";
+      setDateInputValue("1980-01-01");
     }
   };
 
@@ -35,31 +35,31 @@ function FormEmployee({
   };
 
   return (
-    <Grid container spacing={2} role="form">
-      <Grid item xs={12} sm={6}>
-        <TextField
+    <material.Grid container spacing={2} role="form">
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="first-name"
           label="First Name"
           variant="outlined"
           value={firstName}
-          onChange={e => setFirstName(e.target.value)}
+          onChange={(e) => setFirstName(e.target.value)}
           fullWidth
           aria-label="First Name"
         />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="last-name"
           label="Last Name"
           variant="outlined"
           value={lastName}
-          onChange={e => setLastName(e.target.value)}
+          onChange={(e) => setLastName(e.target.value)}
           fullWidth
           aria-label="Last Name"
         />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="date-of-birth"
           label="Date of Birth"
           type="date"
@@ -69,26 +69,44 @@ function FormEmployee({
           onChange={handleDateChange}
           InputLabelProps={{ shrink: true }}
           fullWidth
+          inputProps={{
+            onKeyDown: (e) => {
+              // Gérez la saisie au clavier ici (par exemple, validez avec la touche "Entrée")
+              if (e.key === "Enter") {
+                // Mettez à jour la date de naissance avec la valeur actuelle
+                setDateOfBirth(dateInputValue);
+              }
+            },
+          }}
           aria-label="Date of Birth"
         />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
+      </material.Grid>
+      <material.Grid item xs={12} sm={6}>
+        <material.TextField
           id="start-date"
           label="Start Date"
           type="date"
           variant="outlined"
           value={startDate}
-          onChange={e => setStartDate(e.target.value)}
+          onChange={(e) => setStartDate(e.target.value)}
           InputLabelProps={{ shrink: true }}
           fullWidth
-          aria-label="Start Date"
+          inputProps={{
+            onKeyDown: (e) => {
+              // Gérez la saisie au clavier ici (par exemple, validez avec la touche "Entrée")
+              if (e.key === "Enter") {
+                // Mettez à jour la date de naissance avec la valeur actuelle
+                setDateOfBirth(dateInputValue);
+              }
+            },
+          }}
+          aria-label="Date de naissance"
         />
-      </Grid>
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
-          <InputLabel id="department-label">Department</InputLabel>
-          <Select
+      </material.Grid>
+      <material.Grid item xs={12}>
+        <material.FormControl variant="outlined" fullWidth>
+          <material.InputLabel id="department-label">Department</material.InputLabel>
+          <material.Select
             labelId="department-label"
             id="department"
             value={selectedDepartment}
@@ -96,18 +114,18 @@ function FormEmployee({
             label="Department"
             aria-label="Select Department"
           >
-            <MenuItem value="" disabled aria-disabled="true">
+            <material.MenuItem value="" disabled aria-disabled="true">
               <em>Select Department</em>
-            </MenuItem>
-            {departments.map(dept => (
-              <MenuItem key={dept.id} value={dept.name}>
+            </material.MenuItem>
+            {departments.map((dept) => (
+              <material.MenuItem key={dept.id} value={dept.name}>
                 {dept.name}
-              </MenuItem>
+              </material.MenuItem>
             ))}
-          </Select>
-        </FormControl>
-      </Grid>
-    </Grid>
+          </material.Select>
+        </material.FormControl>
+      </material.Grid>
+    </material.Grid>
   );
 }
 
